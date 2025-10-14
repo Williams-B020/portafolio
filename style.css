@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'MiFuente'; /* Name you'll use in CSS */
+    src: url('font/horizon.otf') format('truetype'); /* Path to your font */
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1 {
+    font-family: 'MiFuente', sans-serif; /* fallback in case font doesn't load */
+}
+
+body {
+    background-color: #f1a61e;
+}
+
+.navbar{
+    margin-top: 40px;
+}
+
+.navbar-nav { 
+    margin: 0 auto; /* Centrar los elementos */
+}
+
+.nav-link {
+    color: #000 !important; /* Texto negro */
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin: 0 20px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    height: 450px;
+
+}
+
+header img {
+    height: 100%;
+    width: auto;
+}
+
+header h1{
+    padding: 30px;
+}
+
+
+.about-section {
+  padding: 60px 20px;
+  background-color: aqua;
+  text-align: center;
+  margin: 0 auto; /* keeps it centered horizontally */
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.about-section h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.about-section p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #444;
+  max-width: 900px;       /* optional: keep text readable */
+  margin: 0 auto;          /* centers just the text block */
+}
+
