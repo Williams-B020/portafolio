@@ -1,4 +1,3 @@
-/* 
 const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 
   navLinks.forEach((link, i) => {
@@ -29,4 +28,24 @@ const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
   });
 
 
-  */
+gsap.config({ trialWarn: false });
+console.clear();
+gsap.registerPlugin(ScrollTrigger, SplitText);
+const split = new SplitText("p", { type: "lines" });
+
+split.lines.forEach((target) => {
+  gsap.to(target, {
+    backgroundPositionX: 0,
+    opacity: 1,
+    ease: "none",
+    scrollTrigger: {
+      trigger: target,
+      scrub: 1,
+      start: "top center",
+      end: "bottom center"
+    }
+  });
+});
+
+  /* */
+

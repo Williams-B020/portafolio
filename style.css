@@ -1,12 +1,16 @@
 @font-face {
-    font-family: 'MiFuente'; /* Name you'll use in CSS */
-    src: url('font/horizon.otf') format('truetype'); /* Path to your font */
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Fuente';
+  src: url('font/horizon.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 h1 {
-    font-family: 'MiFuente', sans-serif; /* fallback in case font doesn't load */
+  font-family: 'Fuente', sans-serif;
+}
+
+p {
+    font-family: Poppins;
 }
 
 body {
@@ -51,26 +55,80 @@ header h1{
 }
 
 
-.about-section {
+/* .about-section {
   padding: 60px 20px;
   background-color: aqua;
   text-align: center;
-  margin: 0 auto; /* keeps it centered horizontally */
+  margin: 0 auto; 
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.about-section h2 {
-  font-size: 2em;
-  margin-bottom: 20px;
-  color: #222;
-}
 
 .about-section p {
   font-size: 1.1em;
-  line-height: 1.6;
   color: #444;
-  max-width: 900px;       /* optional: keep text readable */
-  margin: 0 auto;          /* centers just the text block */
+  max-width: 900px; 
+  margin: 0 auto;  
+} */
+
+
+/* .about-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 2rem;
 }
 
+.about-section p {
+  max-width: 800px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  text-align: justify;
+  transition: all 0.3s ease;
+} */
+
+.red{
+    color: red;
+    background-color: green;
+    
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+
+}
+
+.text > p > div {
+  background: linear-gradient(
+    to right,
+    rgb(37, 37, 37) 50%,
+    rgb(255, 255, 255) 50%
+  );
+  background-size: 200% 100%;
+  background-position-x: 100%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  /*   margin-bottom: -250px; */
+  margin-left: 50px;
+  opacity: 0.6;
+  line-height: 1.2;
+  /*   outline: 6px dotted teal; */
+  font-size: 2rem;
+}
+
+
+.spacio{
+    margin-top: 1000px;
+}
+
+
+
+  /*  mmmmmmmmmmmmmmmmm */
