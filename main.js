@@ -28,24 +28,120 @@ const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
   });
 
 
-gsap.config({ trialWarn: false });
-console.clear();
-gsap.registerPlugin(ScrollTrigger, SplitText);
-const split = new SplitText("p", { type: "lines" });
+ gsap.config({ trialWarn: false });
+ console.clear();
+ gsap.registerPlugin(ScrollTrigger, SplitText);
+ const split = new SplitText(".scroll-about", { type: "lines" });
 
-split.lines.forEach((target) => {
-  gsap.to(target, {
-    backgroundPositionX: 0,
-    opacity: 1,
-    ease: "none",
-    scrollTrigger: {
-      trigger: target,
-      scrub: 1,
-      start: "top center",
-      end: "bottom center"
-    }
-  });
-});
+ split.lines.forEach((target) => {
+   gsap.to(target, {
+     backgroundPositionX: 0,
+     opacity: 1,
+     ease: "none",
+     scrollTrigger: {
+       trigger: target,
+       scrub: 1,
+       start: "top 80%",
+       end: "bottom 80%"
+     }
+   });
+ });
 
   /* */
 
+  const cursor = document.querySelector('.cursor');
+const workItems = document.querySelectorAll('.work-item');
+
+// Cursor exactly follows mouse
+window.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+
+// Hover image randomizer (optional if you want multiple hover images)
+workItems.forEach(item => {
+  const hoverImg = item.querySelector('.hover-img');
+  const hoverImages = item.dataset.hoverImages ? item.dataset.hoverImages.split(',') : [hoverImg.src];
+  let index = 0;
+
+  const changeImage = () => {
+    hoverImg.src = hoverImages[index];
+    index = (index + 1) % hoverImages.length;
+  };
+
+  item.addEventListener('mouseenter', () => {
+    changeImage();
+    item.hoverInterval = setInterval(changeImage, 500);
+  });
+
+  item.addEventListener('mouseleave', () => {
+    clearInterval(item.hoverInterval);
+  });
+});
+
+// Noise animation
+workItems.forEach(item => {
+  const canvas = item.querySelector('.noise-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = item.clientWidth;
+  canvas.height = item.clientHeight;
+
+  function generateNoise() {
+    const imageData = ctx.createImageData(canvas.width, canvas.height);
+    for (let i = 0; i < imageData.data.length; i += 4) {
+      const value = Math.random() * 255;
+      imageData.data[i] = value;
+      imageData.data[i + 1] = value;
+      imageData.data[i + 2] = value;
+      imageData.data[i + 3] = 255;
+    }
+    ctx.putImageData(imageData, 0, 0);
+    requestAnimationFrame(generateNoise);
+  }
+  generateNoise();
+});
+
+
+
+
+workItems.forEach(item => {
+  const hoverCard = item.querySelector('.hover-card');
+
+  item.addEventListener('mouseenter', () => {
+    gsap.fromTo(hoverCard, 
+      { y: 50, scale: 0.9 },           // start slightly below and smaller
+      { y: 0, scale: 1, duration: 0.5, ease: "back.out(1.7)" } // slide up with bounce
+    );
+  });
+
+  item.addEventListener('mouseleave', () => {
+    gsap.to(hoverCard, { 
+      y: 50, 
+      scale: 0.9, 
+      duration: 0.25, 
+      ease: "power3.in"               // quick, snappy exit
+    });
+  });
+});
+
+
+const card = document.querySelector('.work-item');
+const container = document.querySelector('.work-item');
+
+container.addEventListener('mousemove', (e) => {
+  const rect = container.getBoundingClientRect();
+  const x = e.clientX - rect.left; // mouse X inside container
+  const y = e.clientY - rect.top;  // mouse Y inside container
+
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
+
+  const rotateX = ((y - centerY) / centerY) * 15; // max 15deg
+  const rotateY = ((x - centerX) / centerX) * 15;
+
+  card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+});
+
+container.addEventListener('mouseleave', () => {
+  card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+});
