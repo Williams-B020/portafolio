@@ -1,3 +1,4 @@
+// NAVBAR ANIMATION
 const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 
   navLinks.forEach((link, i) => {
@@ -10,29 +11,79 @@ const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
     });
   });
 
+  
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add('sticky');
+  } else {
+    navbar.classList.remove('sticky');
+  }
+});
 
- gsap.from(".header-img", {
+
+
+gsap.registerPlugin(ScrollTrigger);
+// Change nav links color on scroll
+gsap.to(".nav-link", {
+  color: "white",
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".navbar",
+    start: "top top",
+    end: "+=100",
+    scrub: true,
+  }
+});
+
+window.addEventListener("resize", () => {
+  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  // recreate animations here
+});
+
+
+
+// HERO ANIMATION
+gsap.from(".hero-img", {
     y: -200,      // start above
     opacity: 0,
     duration: 1,
     ease: "power3.out"
   });
 
-  // Animate text from bottom
-  gsap.from("header h1", {
-    y: 100,       // start below
+gsap.from(".hero-text", {
+    y: -200,       // start below
     opacity: 0,
     duration: 1,
+    scale: 0.5,
     delay: 0.5,   // slight delay after image
     ease: "power3.out"
   });
 
 
- gsap.config({ trialWarn: false });
- console.clear();
- gsap.registerPlugin(ScrollTrigger, SplitText);
- const split = new SplitText(".scroll-about", { type: "lines" });
 
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".section-hero", {
+  scale: 0.8, // zoom out to 90%
+  ease: "none",
+  borderRadius: "75px",  // round corners
+  scrollTrigger: {
+    trigger: ".section-hero",
+    start: "top top",   // when section top hits top of viewport
+    end: "bottom top",  // when section bottom hits top of viewport
+    scrub: 1         // makes the animation follow the scroll
+  }
+});
+
+
+
+// SCROLLTRIGGER TEXT ANIMATION
+ gsap.registerPlugin(ScrollTrigger, SplitText);
+ let split = new SplitText(".scroll-about", { type: "lines" });
+
+ function makeItHappen() {
  split.lines.forEach((target) => {
    gsap.to(target, {
      backgroundPositionX: 0,
@@ -46,10 +97,27 @@ const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
      }
    });
  });
+ }
 
+ let someDelay = gsap.delayedCall(0.2, newTriggers).pause();
+window.addEventListener("resize", () => someDelay.restart(true));
+
+function newTriggers() {
+  ScrollTrigger.getAll().forEach((trigger) => {
+    trigger.kill();
+  });
+  split.split();
+  makeItHappen();
+}
+
+makeItHappen();
+  
+  /* */
+  
   /* */
 
-  const cursor = document.querySelector('.cursor');
+// MOUSE POINTER
+const cursor = document.querySelector('.cursor');
 const workItems = document.querySelectorAll('.work-item');
 
 // Cursor exactly follows mouse
@@ -79,7 +147,7 @@ workItems.forEach(item => {
   });
 });
 
-// Noise animation
+// NOISE ANIMATION
 workItems.forEach(item => {
   const canvas = item.querySelector('.noise-canvas');
   const ctx = canvas.getContext('2d');
@@ -102,8 +170,7 @@ workItems.forEach(item => {
 });
 
 
-
-
+// CARD INSIDE BLURRY IMAGE
 workItems.forEach(item => {
   const hoverCard = item.querySelector('.hover-card');
 
@@ -148,3 +215,4 @@ cards.forEach((container) => {
     card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
   });
 });
+
