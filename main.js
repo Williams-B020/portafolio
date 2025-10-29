@@ -1,6 +1,5 @@
 // NAVBAR ANIMATION
 const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-
   navLinks.forEach((link, i) => {
     gsap.from(link, {
       x: i % 2 === 0 ? 100 : -100, // even links from left, odd links from right
@@ -10,7 +9,6 @@ const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
       ease: "power3.out"
     });
   });
-
   
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
@@ -20,8 +18,6 @@ window.addEventListener('scroll', () => {
     navbar.classList.remove('sticky');
   }
 });
-
-
 
 gsap.registerPlugin(ScrollTrigger);
 // Change nav links color on scroll
@@ -35,13 +31,6 @@ gsap.to(".nav-link", {
     scrub: true,
   }
 });
-
-window.addEventListener("resize", () => {
-  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-  // recreate animations here
-});
-
-
 
 // HERO ANIMATION
 gsap.from(".hero-img", {
@@ -60,11 +49,7 @@ gsap.from(".hero-text", {
     ease: "power3.out"
   });
 
-
-
-
 gsap.registerPlugin(ScrollTrigger);
-
 gsap.to(".section-hero", {
   scale: 0.8, // zoom out to 90%
   ease: "none",
@@ -76,8 +61,6 @@ gsap.to(".section-hero", {
     scrub: 1         // makes the animation follow the scroll
   }
 });
-
-
 
 // SCROLLTRIGGER TEXT ANIMATION
  gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -109,9 +92,7 @@ function newTriggers() {
   split.split();
   makeItHappen();
 }
-
 makeItHappen();
-  
   /* */
   
   /* */
@@ -169,11 +150,9 @@ workItems.forEach(item => {
   generateNoise();
 });
 
-
 // CARD INSIDE BLURRY IMAGE
 workItems.forEach(item => {
   const hoverCard = item.querySelector('.hover-card');
-
   item.addEventListener('mouseenter', () => {
     gsap.fromTo(hoverCard, 
       { y: 50, scale: 0.9 },           // start slightly below and smaller
@@ -191,28 +170,21 @@ workItems.forEach(item => {
   });
 });
 
-
 const cards = document.querySelectorAll('.work-item');
-
 cards.forEach((container) => {
   const card = container;
-
   container.addEventListener('mousemove', (e) => {
     const rect = container.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-
     const rotateX = ((y - centerY) / centerY) * 15;
     const rotateY = ((x - centerX) / centerX) * 15;
 
     card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
   });
-
   container.addEventListener('mouseleave', () => {
     card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
   });
 });
-
