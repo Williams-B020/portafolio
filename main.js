@@ -1,1 +1,129 @@
-const navLinks=document.querySelectorAll(".navbar-nav .nav-link");navLinks.forEach(((e,t)=>{gsap.from(e,{x:t%2==0?100:-100,opacity:0,duration:.8,delay:.2,ease:"power3.out"})}));const navbar=document.getElementById("navbar");window.addEventListener("scroll",(()=>{window.scrollY>50?navbar.classList.add("sticky"):navbar.classList.remove("sticky")})),gsap.registerPlugin(ScrollTrigger),gsap.to(".nav-link",{color:"white",ease:"none",scrollTrigger:{trigger:".navbar",start:"top top",end:"+=100",scrub:!0}}),gsap.from(".hero-img",{y:-200,opacity:0,duration:1,ease:"power3.out"}),gsap.from(".hero-text",{y:-200,opacity:0,duration:1,scale:.5,delay:.5,ease:"power3.out"}),gsap.registerPlugin(ScrollTrigger),gsap.to(".section-hero",{scale:.8,ease:"none",borderRadius:"75px",scrollTrigger:{trigger:".section-hero",start:"top top",end:"bottom top",scrub:1}}),gsap.registerPlugin(ScrollTrigger,SplitText);let split=new SplitText(".scroll-about",{type:"lines"});function makeItHappen(){split.lines.forEach((e=>{gsap.to(e,{backgroundPositionX:0,opacity:1,ease:"none",scrollTrigger:{trigger:e,scrub:1,start:"top 80%",end:"bottom 80%"}})}))}let someDelay=gsap.delayedCall(.2,newTriggers).pause();function newTriggers(){ScrollTrigger.getAll().forEach((e=>{e.kill()})),split.split(),makeItHappen()}window.addEventListener("resize",(()=>someDelay.restart(!0))),makeItHappen();const cursor=document.querySelector(".cursor"),workItems=document.querySelectorAll(".work-item");window.addEventListener("mousemove",(e=>{cursor.style.left=e.clientX+"px",cursor.style.top=e.clientY+"px"})),workItems.forEach((e=>{const t=e.querySelector(".hover-img"),o=e.dataset.hoverImages?e.dataset.hoverImages.split(","):[t.src];let r=0;const a=()=>{t.src=o[r],r=(r+1)%o.length};e.addEventListener("mouseenter",(()=>{a(),e.hoverInterval=setInterval(a,500)})),e.addEventListener("mouseleave",(()=>{clearInterval(e.hoverInterval)}))})),workItems.forEach((e=>{const t=e.querySelector(".noise-canvas"),o=t.getContext("2d");t.width=e.clientWidth,t.height=e.clientHeight,function e(){const r=o.createImageData(t.width,t.height);for(let e=0;e<r.data.length;e+=4){const t=255*Math.random();r.data[e]=t,r.data[e+1]=t,r.data[e+2]=t,r.data[e+3]=255}o.putImageData(r,0,0),requestAnimationFrame(e)}()})),workItems.forEach((e=>{const t=e.querySelector(".hover-card");e.addEventListener("mouseenter",(()=>{gsap.fromTo(t,{y:50,scale:.9},{y:0,scale:1,duration:.5,ease:"back.out(1.7)"})})),e.addEventListener("mouseleave",(()=>{gsap.to(t,{y:50,scale:.9,duration:.25,ease:"power3.in"})}))}));const cards=document.querySelectorAll(".work-item");cards.forEach((e=>{const t=e;e.addEventListener("mousemove",(o=>{const r=e.getBoundingClientRect(),a=o.clientX-r.left,n=o.clientY-r.top,s=r.width/2,l=r.height/2,i=(n-l)/l*15,c=(a-s)/s*15;t.style.transform=`rotateX(${-i}deg) rotateY(${c}deg) scale(1.05)`})),e.addEventListener("mouseleave",(()=>{t.style.transform="rotateX(0deg) rotateY(0deg) scale(1)"}))})),document.addEventListener("DOMContentLoaded",(()=>{const e=document.getElementById("progressBar"),t=document.getElementById("panels"),o=document.getElementById("loader"),r=document.body,a=Array.from(document.images);let n=0;const s=a.length;function l(){n++,function(){const t=Math.floor(n/s*100);e.style.width=t+"%"}(),n===s&&i()}function i(){e.style.width="100%",t.classList.add("slid"),t.addEventListener("transitionend",(()=>{o.classList.add("hidden"),r.classList.remove("loading"),setTimeout((()=>o.remove()),600)}),{once:!0})}0===s?i():a.forEach((e=>{e.complete?l():(e.addEventListener("load",l),e.addEventListener("error",l))}))}));
+document.addEventListener("DOMContentLoaded", () => {
+
+  // ===== GSAP PLUGIN =====
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  // ===== NAVBAR =====
+  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+  const navbar = document.getElementById('navbar');
+
+  function initNavbar() {
+    navLinks.forEach((link, i) => {
+      gsap.from(link, { x: i % 2 === 0 ? 100 : -100, opacity: 0, duration: 0.8, delay: 0.2, ease: "power3.out" });
+    });
+
+    window.addEventListener('scroll', () => navbar.classList.toggle('sticky', window.scrollY > 50));
+
+    gsap.to(".nav-link", {
+      color: "white",
+      ease: "none",
+      scrollTrigger: { trigger: ".navbar", start: "top top", end: "+=100", scrub: true }
+    });
+  }
+
+  // ===== HERO =====
+  function initHero() {
+    gsap.from(".hero-img", { y: -200, opacity: 0, duration: 1, ease: "power3.out" });
+    gsap.from(".hero-text", { y: -200, opacity: 0, scale: 0.5, duration: 1, delay: 0.5, ease: "power3.out" });
+    gsap.to(".section-hero", {
+      scale: 0.8,
+      borderRadius: "75px",
+      ease: "none",
+      scrollTrigger: { trigger: ".section-hero", start: "top top", end: "bottom top", scrub: 1 }
+    });
+  }
+
+  // ===== SCROLLTRIGGER TEXT =====
+  function initScrollText() {
+    const split = new SplitText(".scroll-about", { type: "lines" });
+
+    function animateLines() {
+      split.lines.forEach(target => {
+        gsap.to(target, {
+          backgroundPositionX: 0,
+          opacity: 1,
+          ease: "none",
+          scrollTrigger: { trigger: target, scrub: 1, start: "top 80%", end: "bottom 80%" }
+        });
+      });
+    }
+
+    animateLines();
+
+    const delayedResize = gsap.delayedCall(0.2, () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+      split.split();
+      animateLines();
+    }).pause();
+
+    window.addEventListener("resize", () => delayedResize.restart(true));
+  }
+
+  // ===== MOUSE POINTER & WORK ITEMS =====
+  const cursor = document.querySelector('.cursor');
+  const workItems = document.querySelectorAll('.work-item');
+
+  function initMousePointer() {
+    window.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+  }
+
+  function initWorkItems() {
+    workItems.forEach(item => {
+      const hoverImg = item.querySelector('.hover-img');
+      const hoverImages = item.dataset.hoverImages ? item.dataset.hoverImages.split(',') : [hoverImg.src];
+      let index = 0;
+
+      const changeImage = () => { hoverImg.src = hoverImages[index]; index = (index + 1) % hoverImages.length; };
+      item.addEventListener('mouseenter', () => { changeImage(); item.hoverInterval = setInterval(changeImage, 500); });
+      item.addEventListener('mouseleave', () => clearInterval(item.hoverInterval));
+
+      // Noise canvas
+      const canvas = item.querySelector('.noise-canvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        canvas.width = item.clientWidth;
+        canvas.height = item.clientHeight;
+        (function generateNoise() {
+          const imageData = ctx.createImageData(canvas.width, canvas.height);
+          for (let i = 0; i < imageData.data.length; i += 4) {
+            const value = Math.random() * 255;
+            imageData.data[i] = imageData.data[i+1] = imageData.data[i+2] = value;
+            imageData.data[i+3] = 255;
+          }
+          ctx.putImageData(imageData, 0, 0);
+          requestAnimationFrame(generateNoise);
+        })();
+      }
+
+      // Hover card animation
+      const hoverCard = item.querySelector('.hover-card');
+      item.addEventListener('mouseenter', () => {
+        gsap.fromTo(hoverCard, { y: 50, scale: 0.9 }, { y: 0, scale: 1, duration: 0.5, ease: "back.out(1.7)" });
+      });
+      item.addEventListener('mouseleave', () => {
+        gsap.to(hoverCard, { y: 50, scale: 0.9, duration: 0.25, ease: "power3.in" });
+      });
+
+      // Card tilt effect
+      item.addEventListener('mousemove', e => {
+        const rect = item.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * 15;
+        const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 15;
+        item.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+      });
+      item.addEventListener('mouseleave', () => { item.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)'; });
+    });
+  }
+
+  // ===== INITIALIZE EVERYTHING AFTER DOM IS READY =====
+  initNavbar();
+  initHero();
+  initScrollText();
+  initMousePointer();
+  initWorkItems();
+});
