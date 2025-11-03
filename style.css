@@ -116,18 +116,6 @@ body {
   z-index: 2; /* above background but below smoke if needed */
 }
 
-.square-behind {
-  position: absolute;
-  width: 500px;
-  height: 200px;
-  background: rgb(0, 0, 0);
-  border-radius: 6px;
-  top: calc(50% - 20px); /* 👈 move up by 20px */
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-}
-
 .humo {
   position: absolute;
   bottom: 0%;
@@ -382,4 +370,5 @@ canvas.noise-canvas {
   border-radius: 5px;
   cursor: pointer;
 }
+
 
