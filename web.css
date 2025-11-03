@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Fuente';
+  src: url('font/horizon.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1 {
+  font-family: 'Fuente', sans-serif;
+}
+
+p {
+    font-family: Poppins;
+}
+
+body {
+  background-color: black;
+  color: #fff;
+}
+
+.navbar{
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    display: flex;
+    transform: translateX(-50%);
+    margin: 0 auto; /* Centrar los elementos */
+    border-radius: 999px;
+    padding: 0.5rem 3rem;
+    box-shadow: 0 4px 0 #cfcfcf;
+    background-color: rgba(255, 255, 255, 1); /* solid initially */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(4px);
+    z-index: 9;
+}

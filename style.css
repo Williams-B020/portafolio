@@ -5,18 +5,17 @@
   font-style: normal;
 }
 
-h1 {
+h1, h2 {
   font-family: 'Fuente', sans-serif;
 }
 
 p {
-    font-family: Poppins;
+    font-family: "Montserrat", sans-serif;
 }
 
 body {
   background-color: black;
   color: #fff;
-  font-family: 'Inter', sans-serif;
 }
 
 .navbar{
@@ -68,14 +67,22 @@ body {
   align-items: center;
 }
 
-
+#image-container-web {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* HERO*/
 .section-hero{
   position: relative;
   width: 100%;
   height: 100vh;
-  background: radial-gradient(circle at center, #a22020, #3b0000);
+  background: radial-gradient(circle at top, #f1a61e, #412a00);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -84,8 +91,57 @@ body {
   padding-top: 100px;
 }
 
+.section-hero-web{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(circle at top, #412a00, #f1a61e);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .hero-img {
   width: min(80vw, 500px); /* responsive max width */
+  height: auto; /* keeps aspect ratio */
+  object-fit: contain; /* prevents distortion */
+  display: block;
+  z-index: 3;
+}
+
+.hero-wrap {
+  position: relative;
+  z-index: 2; /* above background but below smoke if needed */
+}
+
+.square-behind {
+  position: absolute;
+  width: 500px;
+  height: 200px;
+  background: rgb(0, 0, 0);
+  border-radius: 6px;
+  top: calc(50% - 20px); /* 👈 move up by 20px */
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.humo {
+  position: absolute;
+  bottom: 0%;
+  width: 300px;
+}
+
+/* Position each humo image in a horizontal row */
+.humo:nth-child(2) { left: 10%; width: 550px; }
+.humo:nth-child(3) { left: 40%; width: 200px; }
+.humo:nth-child(4) { left: 0%; bottom: 10%; }
+.humo:nth-child(5) { right: 0%; top: 20%;}
+
+.web-hero{
+    width: min(80vw, 500px); /* responsive max width */
   height: auto; /* keeps aspect ratio */
   object-fit: contain; /* prevents distortion */
   display: block;
@@ -94,12 +150,21 @@ body {
 .hero-text{
     padding: 30px;
     text-align: center;
+    color: white;
+    font-size: 4rem;
 } 
 
 /* ABOUT */
+.title-sections h2{
+  margin-top: 10vh; /* 10% of viewport height */
+  color: white;
+  text-align: center;
+  font-size: 5rem;
+}
+
 .about-section{
   padding-top: 50px;
-  background-color: teal;
+  background-color: black;
 }
 
 .text-about {
@@ -109,11 +174,15 @@ body {
   padding: 0%;
 }
 
+.text-about h1{
+  color: white;
+}
+
 .text-about > p > div {
   background: linear-gradient(
     to right,
-    rgb(37, 37, 37) 50%,
-    rgb(255, 255, 255) 50%
+    rgb(255, 255, 255) 50%,
+    rgb(37, 37, 37) 50%
   );
   background-size: 200% 100%;
   background-position-x: 100%;
@@ -125,7 +194,7 @@ body {
   opacity: 0.6;
   line-height: 1.2;
   /*   outline: 6px dotted teal; */
-  font-size: 2rem;
+  font-size: 1.7rem;
   will-change: transform, opacity;
 }
 
@@ -134,7 +203,6 @@ body {
 }
 
   /*  mmmmmmmmmmmmmmmmm */
-
 
 /* SECTIONS */
 .section-grid {
@@ -161,7 +229,7 @@ body {
 
 .text-web-title h1{
   padding-top: 40%;
-  font-size: 100;
+  font-size: 35px;
 }
 
 /*  SECTION PHOTO */
@@ -180,7 +248,26 @@ body {
 
 .text-photo-title h1{
   padding-top: 40%;
-  font-size: 100;
+  font-size: 35px;
+}
+
+/* SECTION ILUSTRACION */
+.text-ilus{
+  width: 33%;
+  text-align: right;
+  font-size: larger;
+  padding-top: 8%;
+}
+
+.text-ilus-title{
+  width: 33%;
+  text-align: center;
+  font-size: 4rem;
+}
+
+.text-ilus-title h1{
+  padding-top: 40%;
+  font-size: 35px;
 }
 
 /* IMAGE HOVER ANIMATION --- NOISE AND BLUR*/
@@ -241,8 +328,8 @@ canvas.noise-canvas {
 
 /* CUSTOM CURSOR */
 .cursor {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   position: fixed;
   pointer-events: none;

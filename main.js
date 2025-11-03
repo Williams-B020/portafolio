@@ -19,6 +19,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== HERO =====
   gsap.from(".hero-img", { y: -200, opacity: 0, duration: 1, ease: "power3.out" });
+
+// Make each humo come from a specific side
+const humoElements = document.querySelectorAll(".humo");
+
+gsap.utils.toArray(".humo").forEach((el, i) => {
+  const randomX = gsap.utils.random(-400, 400);
+  const randomY = gsap.utils.random(-400, 400);
+  const randomDelay = gsap.utils.random(0, 1);
+
+  gsap.from(el, {
+    x: randomX,
+    y: randomY,
+    opacity: 0,
+    duration: 2,
+    delay: 1.2,
+    ease: "power2.out"
+  });
+});
+
+
+  gsap.from(".section-hero background-image", { y: -200, opacity: 0, scale: 0.5, duration: 1, delay: 0.5, ease: "power3.out" });
   gsap.from(".hero-text", { y: -200, opacity: 0, scale: 0.5, duration: 1, delay: 0.5, ease: "power3.out" });
   gsap.to(".section-hero", {
     scale: 0.8,
@@ -111,3 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
     item.addEventListener('mouseleave', () => { item.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)'; });
   });
 });
+
+    document.getElementById('hover-card-button').addEventListener('click', () => {
+      window.location.href = "web.html";
+});
+

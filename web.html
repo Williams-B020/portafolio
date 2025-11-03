@@ -19,33 +19,49 @@
 <body>
 
     <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
+<header class="navbar" id="navbar">
+  <nav class="navbar-expand-lg">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav">
-                  <li class="nav-home">
-                      <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                  </li>
-
-                  <li class="nav-web">
-                      <a class="nav-link" href="#">Diseño Web</a>
-                  </li>
-
-                  <li class="nav-ilustracion">
-                      <a class="nav-link" href="#">Ilustración</a>
-                  </li>
-
-                  <li class="nav-foto">
-                      <a class="nav-link" href="#">Fotografia</a>
-                  </li>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav" id="navbar-nav">
+                <li class="nav-home"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+                <li class="nav-web"><a class="nav-link" href="web.html">Diseño Web</a></li>
+                <li class="nav-ilustracion"><a class="nav-link" href="#">Ilustración</a></li>
+                <li class="nav-foto"><a class="nav-link" href="#">Fotografia</a></li>
               </ul>
           </div>
       </div>
   </nav>
+</header>
+
+ <!-- -- -- -- -- HEADER  -- -- -- -- -->
+<section class="image-stack">
+
+    <div class="section-hero-web" id="image-container-web">
+        <h1 class="hero-text">Diseño <br>Web</h1>
+
+    </div>
+
+    <!-- -- -- -- -- SECTION  -- -- -- -- -->
+    <section class="about-section" id="image-container">
+        <div class="text-about">
+
+        </div>
+    </section>
+
+</section>
+
+<div class="cursor"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <script src="main.js" defer></script>
     
 </body>
 </html>
