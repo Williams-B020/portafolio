@@ -9,7 +9,7 @@ h1, h2 {
   font-family: 'Fuente', sans-serif;
 }
 
-p {
+p, a {
     font-family: "Montserrat", sans-serif;
 }
 
@@ -42,7 +42,6 @@ body {
 .nav-link {
     color: black; /* Texto negro */ 
     margin: 0 20px;
-    font-family: 'Poppins', sans-serif;
     font-weight: 400; /* Optional: make text slightly bold */
     font-size: 1.1rem;  /* Optional: adjust size */
     width: 100%;
@@ -67,16 +66,6 @@ body {
   align-items: center;
 }
 
-#image-container-web {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 /* HERO*/
 .section-hero{
   position: relative;
@@ -88,7 +77,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 9em;
 }
 
 .section-hero-web{
@@ -108,43 +97,90 @@ body {
   height: auto; /* keeps aspect ratio */
   object-fit: contain; /* prevents distortion */
   display: block;
-  z-index: 3;
+  z-index: 99;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
 
 .hero-wrap {
   position: relative;
-  z-index: 2; /* above background but below smoke if needed */
+  z-index: 1000; /* above background but below smoke if needed */
 }
+
+.hero-text{
+  position: relative;  
+  z-index: 1001;      /* force on top of humo */
+  text-align: center;
+  color: white;
+  font-size: 4rem;
+} 
 
 .humo {
   position: absolute;
   bottom: 0%;
   width: 300px;
+  z-index: 5; /* ensure below text */
 }
 
 /* Position each humo image in a horizontal row */
-.humo:nth-child(2) { left: 10%; width: 550px; }
-.humo:nth-child(3) { left: 40%; width: 200px; }
-.humo:nth-child(4) { left: 0%; bottom: 10%; }
-.humo:nth-child(5) { right: 0%; top: 20%;}
+.humo:nth-child(2) { left: 5%; bottom: 0%; width: 500px; z-index: 9; }
+.humo:nth-child(3) { left: 10%; bottom: -10%; width: 300px; z-index: 5; }
+.humo:nth-child(4) { right: 0%; top: 20%; width: 400px; z-index: 5; }
 
-.web-hero{
-    width: min(80vw, 500px); /* responsive max width */
-  height: auto; /* keeps aspect ratio */
-  object-fit: contain; /* prevents distortion */
-  display: block;
+.icon {
+  position: absolute;
+  bottom: 5em;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  opacity: 0;
 }
 
-.hero-text{
-    padding: 30px;
-    text-align: center;
-    color: white;
-    font-size: 4rem;
-} 
+.icon-ilus { width: 150px; }
+.icon-shape { width: 200px; }
+.icon-cam { width: 200px; }
+
+.lght-ray {
+  position: absolute;
+  bottom: 5em;
+  left: 50%;
+  transform: translateX(-50%) rotateX(30deg);
+  width: 450px;
+  height: 600px;
+  /* Conic gradient for radiating light */
+  background:
+      radial-gradient(
+      ellipse at bottom,
+      rgba(255, 255, 255, 0) 20%,      /* transparent center */
+      rgba(255, 230, 150, 0.5) 60%,   /* soft warm color in middle */
+      rgba(255, 200, 100, 0.9) 100%   /* strong opaque edges */
+    ),
+    conic-gradient(
+    from 180deg at 50% 100%,
+    rgba(255, 255, 255, 0) 0deg,
+    rgba(255, 230, 150, 0.3) 15deg,
+    rgba(255, 230, 150, 0.3) 345deg,
+    rgba(255, 255, 255, 0) 360deg
+  );
+  /* Shape like your ASCII art: wider at top, soft taper at bottom */
+  clip-path: polygon(
+    25% 100%,   /* bottom-left */
+    75% 100%,   /* bottom-right */
+    100% 0%,     /* top-right */
+    0% 0%      /* top-left */
+  );
+
+  filter: blur(4px);  /* soft edges */
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+}
+
 
 /* ABOUT */
 .title-sections h2{
   margin-top: 10vh; /* 10% of viewport height */
+  margin-bottom: 10vh;
   color: white;
   text-align: center;
   font-size: 5rem;
@@ -178,7 +214,6 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   /*   margin-bottom: -250px; */
-  margin-left: 40px;
   opacity: 0.6;
   line-height: 1.2;
   /*   outline: 6px dotted teal; */
@@ -369,6 +404,11 @@ canvas.noise-canvas {
   color: #111;
   border-radius: 5px;
   cursor: pointer;
+  font-size: large;
 }
 
+a {
+  color: black;
+  text-decoration: none; /* no underline */
+}
 

@@ -1,35 +1,53 @@
-@font-face {
-  font-family: 'Fuente';
-  src: url('font/horizon.otf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+
+/* HERO*/
+.section-hero-web{
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  background: radial-gradient(circle at top, #412a00, #f1a61e);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-h1 {
-  font-family: 'Fuente', sans-serif;
+/* Common styles for both text wrappers */
+.carousel {
+  margin: 100px auto;
+  width: 90%;
+  display: flex;
+  white-space: nowrap;
+  transform: rotate(-3deg); /* 👈 Slight 2D tilt */
 }
 
-p {
-    font-family: Poppins;
+.group{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 1em;
 }
 
-body {
-  background-color: black;
-  color: #fff;
+.text {
+  font-size: 16vw;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1;
+  padding-right: 0.2em;
 }
 
-.navbar{
-    position: fixed;
-    top: 15px;
-    left: 50%;
-    display: flex;
-    transform: translateX(-50%);
-    margin: 0 auto; /* Centrar los elementos */
-    border-radius: 999px;
-    padding: 0.5rem 3rem;
-    box-shadow: 0 4px 0 #cfcfcf;
-    background-color: rgba(255, 255, 255, 1); /* solid initially */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(4px);
-    z-index: 9;
+
+/* Outline text layer */
+.text.outline {
+  color: transparent;
+  -webkit-text-stroke: 1px white;
+  opacity: 0.5;
+  position: relative;
+}
+
+/* Slight offset for parallax feel */
+.outline-text {
+  position: absolute;
+  transform: translateY(-50%) rotateX(20deg);
+  transform: rotate(5deg);
 }

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(ScrollTrigger, SplitText);
+  gsap.registerPlugin(ScrollTrigger, SplitText, MotionPathPlugin);
 
   // ===== NAVBAR =====
   const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
@@ -18,29 +18,73 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ===== HERO =====
-  gsap.from(".hero-img", { y: -200, opacity: 0, duration: 1, ease: "power3.out" });
+  gsap.from(".hero-img", { y: 200, opacity: 0, duration: 1, ease: "power3.out" });
 
-// Make each humo come from a specific side
-const humoElements = document.querySelectorAll(".humo");
+  gsap.utils.toArray(".humo").forEach(el => {
+    gsap.from(el, {
+      x: gsap.utils.random(-400, 400),
+      y: gsap.utils.random(-400, 400),
+      opacity: 0,
+      duration: 2,
+      delay: 1.2,
+      ease: "power2.out"
+    });
+  });
 
-gsap.utils.toArray(".humo").forEach((el, i) => {
-  const randomX = gsap.utils.random(-400, 400);
-  const randomY = gsap.utils.random(-400, 400);
-  const randomDelay = gsap.utils.random(0, 1);
+  const smokes = document.querySelectorAll(".icon");
+// 🎯 Define unique paths for each smoke element
+const paths = [
+  [
+    { x: 0, y: 0 },     
+    { x: 0, y: -150 },  
+    { x: 150, y: -300 } 
+  ],
+  [
+    { x: 0, y: 0 },      // start (bottom center)
+    { x: -100, y: -100 }, // control point — goes up and right
+    { x: -100, y: -350 }  // end point (top right)
+  ],
+  [
+    { x: 0, y: 0 },      // start (bottom center)
+    { x: -50, y: -150 }, // control point — goes up and right
+    { x: -50, y: -150 }  // end point (top right)
+  ]
+];
 
-  gsap.from(el, {
-    x: randomX,
-    y: randomY,
-    opacity: 0,
+// 🚀 Animate each smoke element along its path
+smokes.forEach((smoke, i) => {
+  gsap.timeline({
+    defaults: { ease: "power1.inOut" },
+    onComplete: () => float(smoke)
+  }).to(smoke, {
     duration: 2,
-    delay: 1.2,
-    ease: "power2.out"
+    opacity: 0.8,
+    motionPath: {
+      curviness: 1.25,
+      path: paths[i % paths.length]
+    }
   });
 });
 
+// 🌬 Gentle random floating loop
+function float(target) {
+  function animate() {
+    gsap.to(target, {
+      x: "+=" + gsap.utils.random(-25, 25),
+      y: "+=" + gsap.utils.random(-20, 20),
+      rotation: gsap.utils.random(-8, 8),
+      duration: gsap.utils.random(3, 6),
+      ease: "sine.inOut",
+      onComplete: animate
+    });
+  }
+
+  // Slight random delay to desync motions
+  gsap.delayedCall(gsap.utils.random(0, 1.5), animate);
+}
 
   gsap.from(".section-hero background-image", { y: -200, opacity: 0, scale: 0.5, duration: 1, delay: 0.5, ease: "power3.out" });
-  gsap.from(".hero-text", { y: -200, opacity: 0, scale: 0.5, duration: 1, delay: 0.5, ease: "power3.out" });
+  gsap.from(".hero-text", { y: 200, opacity: 0, scale: 0.5, duration: 1, delay: 0.5, ease: "power3.out" });
   gsap.to(".section-hero", {
     scale: 0.8,
     borderRadius: "75px",
@@ -133,7 +177,30 @@ gsap.utils.toArray(".humo").forEach((el, i) => {
   });
 });
 
-    document.getElementById('hover-card-button').addEventListener('click', () => {
-      window.location.href = "web.html";
-});
 
+    // HERO ---- WEB ---- FOTO ---- ILUST ----
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.carousel').forEach(ticker => {
+    const inner = ticker.querySelector('.group');
+    const content = inner.querySelector('.text');
+    const duration = ticker.getAttribute('data-duration') || 8;
+
+    // Clone for seamless loop
+    inner.append(content.cloneNode(true));
+
+    const isOutline = ticker.classList.contains('outline-text');
+
+    // If it's the outline version, animate the opposite direction or slower
+    const animations = [];
+    inner.querySelectorAll('.text').forEach(element => {
+      const animation = gsap.to(element, {
+        x: isOutline ? "-100%" : "-100%", // opposite direction
+        repeat: -1,
+        duration: isOutline ? duration : duration, // slightly slower
+        ease: "linear"
+      });
+      animations.push(animation);
+    });
+  });
+});
