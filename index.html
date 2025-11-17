@@ -12,7 +12,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
 
 </head>
 
@@ -28,10 +28,11 @@
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav" id="navbar-nav">
-                <li class="nav-home"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-home"><a class="nav-link" href="index.html">Inicio</a></li>
                 <li class="nav-web"><a class="nav-link" href="web.html">Diseño Web</a></li>
                 <li class="nav-ilustracion"><a class="nav-link" href="ilustracion.html">Ilustración</a></li>
                 <li class="nav-foto"><a class="nav-link" href="fotografia.html">Fotografia</a></li>
+                <li class="nav-cont"><a class="nav-link" href="contacto.html">Contacto</a></li>
             </ul>
         </div>
     </div>
@@ -43,13 +44,12 @@
 
     <section class="section-hero" id="image-container">
         <div class="hero-wrap">
-            <div class="light-ray"></div>
              <h1 class="hero-text">Portafolio <br>Pulso</h1>
+             <div class="square-behind"></div>
             <img class="hero-img" src="imagenes/mano.png" alt="Centered Image">
-            <img class="icon icon-ilus" src="imagenes/cam.png" alt="">
-            <!-- <img class="icon icon-shape" src="imagenes/shape.png" alt="">
-            <img class="icon icon-cam" src="imagenes/cam.jpg" alt=""> -->
- 
+            <img class="icon icon-web" src="imagenes/shape.png" alt="">
+            <img class="icon icon-ilus" src="imagenes/icon_ilus.png" alt="">
+            <img class="icon icon-cam" src="imagenes/cam.png" alt="">
         </div>
         
         <img class="humo" src="imagenes/smoke.png">
@@ -58,12 +58,10 @@
         
     </section>
 
-
-
     <!-- -- -- -- -- ABOUT  -- -- -- -- -->
     <section class="about-section" id="image-container">
-        <div class="text-about">
-            <h1>CONCEPTO DEL PORTAFOLIO</h1>
+        <div class="text-about content">
+            <h1 class="title-about">CONCEPTO DEL PORTAFOLIO</h1>
             <p class="scroll-about">Mi portafolio es un espacio donde quiero compartir los aprendizajes,
                 habilidades y experiencias que he desarrollado como diseñador. 
                 Aquí se muestra cómo aplico mis conocimientos en diferentes proyectos y diferentes áreas,
@@ -81,27 +79,25 @@
 <!-- -- -- -- -- SECTION DE SECCIONES WEB-- -- -- -- -->
 <section>
     <div class="title-sections">
-            <h2>AREAS</h2>
-        </div>
+        <h2>AREAS</h2>
+    </div>
+</section>
 
-        <hr class="solid">
+<hr class="solid">
+
+<section>
     <div class="section-grid">
-        
         <div class="text-web-title">
             <h1>Diseño Web</h1>
         </div>
-
         <div class="work-item">
                 <img class="main-img" src="imagenes/web-design.jpg" alt="Work 1" loading="lazy">
                 <img class="hover-img" src="imagenes/web-design.jpg" alt="Work 1 Hover"loading="lazy">
                 <canvas class="noise-canvas"></canvas>
             <div class="hover-card">
-                <div class="hover-card-content">
-                    <button class="hover-card-button" id="hover-card-button"><a href="web.html">Diseño web</a></button>
-                </div>
+                <button class="hover-button"><a href="web.html">Diseño web</a></button>
             </div>
         </div>
-
         <div class="text-web">
             <p>En esta sección se reúnen proyectos de diseño web creados con un enfoque 
             que integra estética, funcionalidad y usabilidad. Cada trabajo busca ofrecer 
@@ -109,7 +105,6 @@
             siempre alineada con la identidad de cada marca.</p>
         </div>
     </div>
-
 </section>
 
 <hr class="solid">
@@ -122,29 +117,21 @@
                 que exploran la composición, la luz y la narrativa visual, 
                 Cada imagen busca captar momentos únicos y transmitir la esencia de su contexto</p>
         </div>
-
-    <div class="work-item">
-        <img class="main-img" src="imagenes/cam.jpg" alt="Work 1" loading="lazy">
-        <img class="hover-img" src="imagenes/cam.jpg" alt="Work 1 Hover" loading="lazy">
-        <canvas class="noise-canvas"></canvas>
-    <!-- <div class="hover-card">
-        <img src="https://via.placeholder.com/300x150" alt="Card Image" class="hover-card-img">
-    <div class="hover-card-content">
-        <h2 class="hover-card-title">Card Title</h2>
-        <p class="hover-card-text">This is a simple hover card with a title, image, and some text content.</p>
-        <button class="hover-card-button">Learn More</button>
-        
-      </div>
-    </div> -->
-  </div>
-
-  <div class="text-photo-title">
+        <div class="work-item">
+                <img class="main-img" src="imagenes/cam.jpg" alt="Work 1" loading="lazy">
+                <img class="hover-img" src="imagenes/cam.jpg" alt="Work 1 Hover" loading="lazy">
+                <canvas class="noise-canvas"></canvas>
+            <div class="hover-card">
+                <button class="hover-button"><a href="fotografia.html">Fotografía</a></button>
+            </div>
+        </div>
+        <div class="text-photo-title">
             <h1>Fotografía</h1>
         </div>
-  
-</div>
-
+    </div>
 </section>
+
+<hr class="solid">
 
 <!-- -- -- -- -- SECTION DE SECCIONES ILUSTRACION-- -- -- -- -->
 <section>
@@ -157,16 +144,10 @@
                 <img class="main-img" src="imagenes/ilus.jpg" alt="Work 1" loading="lazy">
                 <img class="hover-img" src="imagenes/ilus.jpg" alt="Work 1 Hover"loading="lazy">
                 <canvas class="noise-canvas"></canvas>
-            <!-- <div class="hover-card">
-                <img src="" alt="Card Image" class="hover-card-img">
-                <div class="hover-card-content">
-                    <h2 class="hover-card-title">Card Title</h2>
-                    <p class="hover-card-text">This is a simple hover card with a title, image, and some text content.</p>
-                    <button class="hover-card-button" id="hover-card-button">Learn More</button>
-                </div>
-            </div> -->
+            <div class="hover-card">
+                <button class="hover-button"><a href="ilustracion.html">Ilustración</a></button>
+            </div>
         </div>
-
         <div class="text-ilus">
             <p>En esta sección se reúnen proyectos de diseño web creados con un enfoque 
             que integra estética, funcionalidad y usabilidad. Cada trabajo busca ofrecer 
@@ -174,7 +155,6 @@
             siempre alineada con la identidad de cada marca.</p>
         </div>
     </div>
-
 </section>
 
 <hr class="solid">

@@ -31,25 +31,51 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  const smokes = document.querySelectorAll(".icon");
-// 🎯 Define unique paths for each smoke element
-const paths = [
+ const smokes = document.querySelectorAll(".icon");
+
+// Detect if screen is mobile
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+// 🎯 Desktop paths
+const desktopPaths = [
   [
-    { x: 0, y: 0 },     
-    { x: 0, y: -150 },  
-    { x: 150, y: -300 } 
+    { x: 0, y: 0 },
+    { x: 0, y: -150 },
+    { x: 350, y: -320 }
   ],
   [
-    { x: 0, y: 0 },      // start (bottom center)
-    { x: -100, y: -100 }, // control point — goes up and right
-    { x: -100, y: -350 }  // end point (top right)
+    { x: 0, y: 0 },
+    { x: -100, y: -100 },
+    { x: -350, y: -320 }
   ],
   [
-    { x: 0, y: 0 },      // start (bottom center)
-    { x: -50, y: -150 }, // control point — goes up and right
-    { x: -50, y: -150 }  // end point (top right)
+    { x: 0, y: 0 },
+    { x: -50, y: -150 },
+    { x: -50, y: -150 }
   ]
 ];
+
+// 📱 Mobile paths (smaller movement so they stay in frame)
+const mobilePaths = [
+  [
+    { x: 0, y: 0 },
+    { x: 0, y: -80 },
+    { x: 80, y: -230 }
+  ],
+  [
+    { x: 0, y: 0 },
+    { x: -50, y: -70 },
+    { x: -100, y: -220 }
+  ],
+  [
+    { x: 0, y: 0 },
+    { x: -20, y: -50 },
+    { x: -20, y: -50 }
+  ]
+];
+
+// Choose the correct paths
+const paths = isMobile ? mobilePaths : desktopPaths;
 
 // 🚀 Animate each smoke element along its path
 smokes.forEach((smoke, i) => {
@@ -58,7 +84,8 @@ smokes.forEach((smoke, i) => {
     onComplete: () => float(smoke)
   }).to(smoke, {
     duration: 2,
-    opacity: 0.8,
+    delay: 0.7,
+    opacity: 1,
     motionPath: {
       curviness: 1.25,
       path: paths[i % paths.length]
@@ -92,26 +119,66 @@ function float(target) {
     scrollTrigger: { trigger: ".section-hero", start: "top top", end: "bottom top", scrub: 1 }
   });
 
+  
   // ===== SCROLLTRIGGER TEXT =====
-  const split = new SplitText(".scroll-about", { type: "lines" });
-  function animateLines() {
-    split.lines.forEach(target => {
-      gsap.to(target, {
-        backgroundPositionX: 0,
-        opacity: 1,
-        ease: "none",
-        scrollTrigger: { trigger: target, scrub: 1, start: "top 80%", end: "bottom 80%" }
-      });
-    });
-  }
-  animateLines();
+window.addEventListener("load", () => {
+  
+  const isMobile = window.innerWidth < 768;
 
-  const delayedResize = gsap.delayedCall(0.2, () => {
-    ScrollTrigger.getAll().forEach(t => t.kill());
-    split.split();
-    animateLines();
-  }).pause();
-  window.addEventListener("resize", () => delayedResize.restart(true));
+  // Kill old split on reload (desktop only)
+  if (!isMobile && window.splitInstance) {
+    window.splitInstance.revert();
+  }
+
+  if (isMobile) {
+    console.log("Mobile animation active");
+
+    // SIMPLE MOBILE ANIMATION (NO SplitText, NO pin)
+    gsap.from([".title-about", ".scroll-about"], {
+      y: 30,
+      autoAlpha: 0,
+      duration: 1,
+      delay: 0.1,     // ⏳ Small delay before animation starts
+      stagger: 0.5,   // H1 first, then paragraph
+      scrollTrigger: {
+        trigger: ".about-section",
+        start: "top 80%",   // triggers earlier on mobile
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    ScrollTrigger.refresh();
+    return; // stop desktop animation from running
+  }
+
+  // ===========================
+  // DESKTOP ANIMATION (original)
+  // ===========================
+  console.log("Desktop animation active");
+
+  // Create split AFTER layout stable
+  const split = window.splitInstance = new SplitText(".scroll-about", {
+    type: "lines"
+  });
+
+  gsap.set(".scroll-about", { autoAlpha: 1 });
+
+  gsap.from(split.lines, {
+    yPercent: 0,
+    autoAlpha: 0,
+    stagger: 0.1,
+    scrollTrigger: {
+      trigger: ".about-section",
+      start: "top 0%",
+      end: "bottom 0%",
+      pin: true,
+      scrub: true,
+    }
+  });
+
+  ScrollTrigger.refresh();
+});
+
 
   // ===== MOUSE POINTER =====
   const cursor = document.querySelector('.cursor');
