@@ -260,7 +260,37 @@ window.addEventListener("load", () => {
     item.addEventListener('mouseleave', () => { item.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)'; });
   });
 
+  
+gsap.registerPlugin(ScrambleTextPlugin);
 
+document.querySelectorAll(".scramble-text").forEach((el) => {
+    const originalText = el.textContent;
+
+    el.addEventListener("mouseenter", () => {
+        // Ensure the text is reset before animation
+        el.textContent = originalText;
+
+        gsap.to(el, {
+            duration: 1,
+            ease: "power3.out",
+            scrambleText: {
+                text: originalText,
+                chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ[{",
+                speed: 0.3,
+                revealDelay: 0.15
+            }
+        });
+    });
+
+    // Optional: reset text on mouseleave for repeated hover
+    el.addEventListener("mouseleave", () => {
+        gsap.to(el, {
+            duration: 0.5,
+            ease: "power1.out",
+            textContent: originalText
+        });
+    });
+});
     
 });
 
@@ -289,36 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-
-
-
-gsap.registerPlugin(ScrambleTextPlugin);
-
-document.querySelectorAll(".random-text").forEach((el) => {
-
-    // store the unique text for this element
-    const originalText = el.textContent;
-
-    el.addEventListener("mouseenter", () => {
-        
-        // reset text before animating
-        gsap.set(el, { textContent: originalText });
-
-        gsap.to(el, {
-            duration: 1,
-            ease: "power3.out",
-            scrambleText: {
-                text: originalText,   // ← each element uses its own phrase
-                chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ[{",
-                speed: 0.3,
-                revealDelay: 0.15,
-                oldClass: true        // keeps your original font
-            }
-        });
-    });
-});
-
-
 
 
 gsap.defaults({ ease: "elastic(1.5, 0.3)" });
@@ -382,6 +382,5 @@ function onMove(e) {
     p1.y = restY + pull;
   }
 }
-
 
 
