@@ -26,7 +26,7 @@ body {
     transform: translateX(-50%);
     margin: 0 auto; /* Centrar los elementos */
     border-radius: 999px;
-    padding: 0.5rem 3rem;
+    padding: 0.2rem 3rem;
     box-shadow: 0 4px 0 #cfcfcf;
     background-color: rgba(255, 255, 255, 1); /* solid initially */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -52,7 +52,7 @@ body {
 .nav-link {
     color: black; /* Texto negro */ 
     margin: 0 20px;
-    font-weight: 400; /* Optional: make text slightly bold */
+    font-weight: bold;
     font-size: 1.1rem;  /* Optional: adjust size */
     width: 100%;
 }
@@ -136,7 +136,7 @@ body {
   z-index: 1001;      /* force on top of humo */
   text-align: center;
   color: #454E59;
-  font-size: 4rem;
+  font-size: 5rem;
 } 
 
 .humo {
@@ -147,9 +147,9 @@ body {
 }
 
 /* Position each humo image in a horizontal row */
-.humo:nth-child(2) { left: 5%; bottom: 0%; width: 500px; z-index: 9; }
-.humo:nth-child(3) { left: 10%; bottom: -10%; width: 300px; z-index: 5; }
-.humo:nth-child(4) { right: 0%; top: 20%; width: 400px; z-index: 5; }
+.humo:nth-child(2) { left: 55%; top: 0%; width: 500px; z-index: 9; }
+.humo:nth-child(3) { left: 70%; top: -5%; width: 300px; z-index: 5; }
+.humo:nth-child(4) { left: 10%; top: 0; width: 400px; z-index: 5; }
 
 .icon {
   position: absolute;

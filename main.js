@@ -1,5 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(ScrollTrigger, SplitText, MotionPathPlugin);
+
+    // ===== MOUSE POINTER =====
+  const cursor = document.querySelector('.cursor');
+  const workItems = document.querySelectorAll('.work-item');
+  window.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  gsap.registerPlugin(ScrollTrigger, SplitText, MotionPathPlugin, ScrambleTextPlugin,);
 
   // ===== NAVBAR =====
   const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
@@ -20,16 +29,35 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== HERO =====
   gsap.from(".hero-img", { y: 200, opacity: 0, duration: 1, ease: "power3.out" });
 
-  gsap.utils.toArray(".humo").forEach(el => {
-    gsap.from(el, {
-      x: gsap.utils.random(-400, 400),
-      y: gsap.utils.random(-400, 400),
-      opacity: 0,
-      duration: 2,
-      delay: 1.2,
-      ease: "power2.out"
-    });
+const humoElements = gsap.utils.toArray(".humo");
+
+humoElements.forEach((el) => {
+  let fromX = 0;
+  let fromY = 0;
+
+  // Direction based on class
+  if (el.classList.contains("from-left")) {
+    fromX = -400;
+  } else if (el.classList.contains("from-right")) {
+    fromX = 400;
+  } else if (el.classList.contains("from-top")) {
+    fromY = -400;
+  } else if (el.classList.contains("from-bottom")) {
+    fromY = 400;
+  }
+
+  // Random delay for a natural feel
+  const randomDelay = gsap.utils.random(0, 1);
+
+  gsap.from(el, {
+    x: fromX,
+    y: fromY,
+    opacity: 0,
+    duration: 2,
+    delay: randomDelay,
+    ease: "power2.out"
   });
+});
 
  const smokes = document.querySelectorAll(".icon");
 
@@ -41,17 +69,17 @@ const desktopPaths = [
   [
     { x: 0, y: 0 },
     { x: 0, y: -150 },
-    { x: 350, y: -320 }
+    { x: 350, y: -300 }
   ],
   [
     { x: 0, y: 0 },
-    { x: -100, y: -100 },
-    { x: -350, y: -320 }
+    { x: -90, y: -150 },
+    { x: -350, y: -220 }
   ],
   [
     { x: 0, y: 0 },
-    { x: -50, y: -150 },
-    { x: -50, y: -150 }
+    { x: -40, y: -150 },
+    { x: -40, y: -150 }
   ]
 ];
 
@@ -110,7 +138,6 @@ function float(target) {
   gsap.delayedCall(gsap.utils.random(0, 1.5), animate);
 }
 
-  gsap.from(".section-hero background-image", { y: -200, opacity: 0, scale: 0.5, duration: 1, delay: 0.5, ease: "power3.out" });
   gsap.from(".hero-text", { y: 200, opacity: 0, scale: 0.5, duration: 1, delay: 0.5, ease: "power3.out" });
   gsap.to(".section-hero", {
     scale: 0.8,
@@ -118,7 +145,6 @@ function float(target) {
     ease: "none",
     scrollTrigger: { trigger: ".section-hero", start: "top top", end: "bottom top", scrub: 1 }
   });
-
   
   // ===== SCROLLTRIGGER TEXT =====
 window.addEventListener("load", () => {
@@ -179,15 +205,6 @@ window.addEventListener("load", () => {
   ScrollTrigger.refresh();
 });
 
-
-  // ===== MOUSE POINTER =====
-  const cursor = document.querySelector('.cursor');
-  const workItems = document.querySelectorAll('.work-item');
-  window.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
-
   // ===== WORK ITEMS =====
   workItems.forEach(item => {
     // Lazy hover image
@@ -242,11 +259,42 @@ window.addEventListener("load", () => {
     });
     item.addEventListener('mouseleave', () => { item.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)'; });
   });
+
+  // scramble text on buttons
+  document.querySelectorAll(".scramble-text").forEach((el) => {
+
+      // store the unique text for this element
+      const originalText = el.textContent;
+
+      el.addEventListener("mouseenter", () => {
+          
+          // reset text before animating
+          gsap.set(el, { textContent: originalText });
+
+          gsap.to(el, {
+              duration: 1,
+              ease: "power2.out",
+              scrambleText: {
+                  text: originalText,   // ← each element uses its own phrase
+                  chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                  speed: 0.3,
+                  revealDelay: 0.15,
+                  oldClass: true        // keeps your original font
+              }
+          });
+      });
+
+      el.addEventListener("mouseleave", () => {
+          gsap.to(el, {
+          duration: 1,
+          scrambleText: originalText
+        });
+      });
+    });
+    
 });
 
-
     // HERO ---- WEB ---- FOTO ---- ILUST ----
-
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.carousel').forEach(ticker => {
     const inner = ticker.querySelector('.group');
@@ -271,3 +319,98 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+
+
+gsap.registerPlugin(ScrambleTextPlugin);
+
+document.querySelectorAll(".random-text").forEach((el) => {
+
+    // store the unique text for this element
+    const originalText = el.textContent;
+
+    el.addEventListener("mouseenter", () => {
+        
+        // reset text before animating
+        gsap.set(el, { textContent: originalText });
+
+        gsap.to(el, {
+            duration: 1,
+            ease: "power3.out",
+            scrambleText: {
+                text: originalText,   // ← each element uses its own phrase
+                chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ[{",
+                speed: 0.3,
+                revealDelay: 0.15,
+                oldClass: true        // keeps your original font
+            }
+        });
+    });
+});
+
+
+
+
+gsap.defaults({ ease: "elastic(1.5, 0.3)" });
+
+const svg  = document.getElementById("string-svg");
+const path = document.getElementById("string-path");
+
+let connected = false;
+let snapDist = 120;
+
+let p0 = { x: 0, y: 0 };   // left
+let p1 = { x: 0, y: 0 };   // control (middle)
+let p2 = { x: 0, y: 0 };   // right
+
+function setupPoints() {
+  const w = svg.clientWidth;
+  const h = svg.clientHeight;
+
+  const midY = h / 2;
+
+  p0.x = 0;     p0.y = midY;
+  p1.x = w/2;   p1.y = midY;
+  p2.x = w;     p2.y = midY;
+}
+
+setupPoints();
+window.addEventListener("resize", setupPoints);
+
+svg.addEventListener("mousemove", onMove);
+gsap.ticker.add(update);
+update();
+
+function update() {
+  const d = `M${p0.x},${p0.y} Q${p1.x},${p1.y} ${p2.x},${p2.y}`;
+  path.setAttribute("d", d);
+
+  const restY = svg.clientHeight / 2;
+
+  if (Math.abs(p1.y - restY) > snapDist) {
+    connected = false;
+    gsap.to(p1, { y: restY, duration: 1.5 });
+  }
+}
+
+function onMove(e) {
+  const rect = svg.getBoundingClientRect();
+  const restY = svg.clientHeight / 2;
+
+  if (!connected && e.target === path) {
+    connected = true;
+    gsap.killTweensOf(p1);
+  }
+
+  if (connected) {
+    // Calculate mouse Y relative to SVG
+    const mouseY = e.clientY - rect.top;
+
+    // Pull the string *relative to center*
+    const pull = (mouseY - restY) * 2;
+
+    p1.y = restY + pull;
+  }
+}
+
+

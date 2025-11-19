@@ -1,0 +1,84 @@
+@font-face {
+  font-family: 'Fuente';
+  src: url('font/horizon.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1, h2 {
+  font-family: 'Fuente', sans-serif;
+}
+
+p, a {
+    font-family: "Bricolage Grotesque", sans-serif;
+}
+
+body {
+  margin: 0%;
+  background-color: black;
+  color: #fff;
+}
+
+.words{
+    margin-top: 15vh; /* 10% of viewport height */
+    margin-bottom: 10vh;
+}
+
+.words h2{
+  color: white;
+  text-align: center;
+  font-size: 6rem;
+  padding: 0%;
+}
+
+
+.rubber-line {
+    width: 90%;
+    margin: 0 auto;      /* centers horizontally */
+    padding: 0%;
+    cursor: pointer;
+}
+
+.me{
+    width: 100%;
+}
+.stack-section {
+  width: 100%;
+  padding: 40px 0;
+
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+
+.stack-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 60px; /* space between STACK and the list */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stack-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.8;
+  white-space: nowrap; /* keeps it in one line */
+}
+
+.stack-items {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 15px 100px;
+  white-space: nowrap;
+  text-decoration: underline;
+}
+
+.stack-items span {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
