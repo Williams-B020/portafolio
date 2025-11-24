@@ -136,7 +136,10 @@ body {
 
 /* --- VISUAL AREA --- */
 .hero-visual {
-  position: relative;
+    width: min(80vw, 500px); /* responsive max width */
+  height: auto; /* keeps aspect ratio */
+  object-fit: contain; /* prevents distortion */
+  width: 40%;
 }
 
 .blob-bg {
@@ -156,7 +159,7 @@ body {
   z-index: 2;
   border-radius: 20px;
   display: block;
-  transform: rotate(-2deg);
+  /* transform: rotate(-2deg); */
   box-shadow: 10px 10px 40px rgba(148, 148, 148, 0.4);
 }
 

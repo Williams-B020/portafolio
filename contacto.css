@@ -31,6 +31,37 @@ body {
   padding: 0%;
 }
 
+.me{
+    width: min(80vw, 500px); /* responsive max width */
+  height: auto; /* keeps aspect ratio */
+  object-fit: contain; /* prevents distortion */
+  width: 50%;
+  z-index: 999;
+}
+
+.about-section{
+  padding-top: 50px;
+  background-color: black;
+  position: relative;
+  height: 100vh;     /* section keeps its height */
+  display: flex;
+  align-items: center;
+}
+
+.text-about {
+  width: 100%;
+  height: 100vh;       /* <- important */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0%;
+}
+
+.text-about h1{
+  color: white;
+  padding-left: 1em;
+}
+
 
 .rubber-line {
     width: 90%;
@@ -39,15 +70,10 @@ body {
     cursor: pointer;
 }
 
-.me{
-    width: 100%;
-}
 .stack-section {
   width: 100%;
   padding: 40px 0;
-
   color: white;
-  font-family: "Inter", sans-serif;
 }
 
 .stack-container {
