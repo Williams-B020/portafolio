@@ -291,6 +291,39 @@ document.querySelectorAll(".scramble-text").forEach((el) => {
         });
     });
 });
+
+
+
+const images = document.querySelectorAll('.web-image, .ilus-image, .foto-image');
+const overlay = document.getElementById('overlay');
+const bigImg = document.getElementById('bigImg');
+
+// Open
+images.forEach(img => {
+  img.addEventListener('click', () => {
+    bigImg.src = img.src;
+    overlay.classList.add('open');
+    document.body.classList.add('noscroll');
+  });
+});
+
+// Close on click
+overlay.addEventListener('click', () => {
+  overlay.classList.remove('open');
+  document.body.classList.remove('noscroll');
+  setTimeout(() => bigImg.src = "", 200);
+});
+
+// Close with Esc
+window.addEventListener('keydown', e => {
+  if (e.key === "Escape") {
+    overlay.classList.remove('open');
+    document.body.classList.remove('noscroll');
+    setTimeout(() => bigImg.src = "", 200);
+  }
+});
+
+
     
 });
 
@@ -319,6 +352,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.words').forEach(ticker => {
+    const inner = ticker.querySelector('.group');
+    const content = inner.querySelector('.text');
+    const duration = ticker.getAttribute('data-duration') || 8;
+
+    // Clone for seamless loop
+function cloneContent(times) {
+    for (let i = 0; i < times; i++) {
+        inner.append(content.cloneNode(true));
+    }
+}
+
+cloneContent(3); // clones it 3 times
+
+    const isOutline = ticker.classList.contains('outline-text');
+
+    // If it's the outline version, animate the opposite direction or slower
+    const animations = [];
+    inner.querySelectorAll('.text').forEach(element => {
+      const animation = gsap.to(element, {
+        x: isOutline ? "-100%" : "-100%", // opposite direction
+        repeat: -1,
+        duration: isOutline ? duration : duration, // slightly slower
+        ease: "linear"
+      });
+      animations.push(animation);
+    });
+  });
+});
+
+
 
 
 gsap.defaults({ ease: "elastic(1.5, 0.3)" });
@@ -382,5 +451,6 @@ function onMove(e) {
     p1.y = restY + pull;
   }
 }
+
 
 

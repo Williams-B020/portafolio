@@ -163,31 +163,6 @@ body {
   box-shadow: 10px 10px 40px rgba(148, 148, 148, 0.4);
 }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 900px) {
-  .hero-section {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .hero-content h1 {
-    font-size: 2.8rem;
-  }
-
-  .hero-visual {
-    margin-top: 40px;
-  }
-
-  .blob-bg {
-    width: 90vw;
-  }
-
-  .hero-image {
-    width: 85vw;
-  }
-}
-
-
 /* ---------------- TOP SECTION ---------------- */
 .project-header {
     display: grid;
@@ -210,9 +185,12 @@ body {
 /* Right column */
 .info-right h1 {
     font-size: 3rem;
-    font-weight: 600;
+    font-weight: 600px;
     line-height: 0.9;
     color: white;
+    padding-left: 0; /* optional: reset padding on mobile */
+    text-align: left;
+    margin-bottom: 1rem;
 }
 
 .meta {
@@ -277,21 +255,100 @@ body {
   height: 100vh;
   padding: 40px;
   box-sizing: border-box;
-  width: 100%;
+  width: 50%;
 }
 
 /* Right side (scrollable) */
 .right {
   width: 50%;
   padding: 40px;
-  box-sizing: border-box;
 }
 
 .right p {
   margin-bottom: 40px; /* demo spacing */
 }
 
+.right img {
+    width: 100%;
+    height: auto; 
+    object-fit: cover;
+    display: block;
+}
 
-.web-image{
-  width: 600px;
+.fullscreen-img {
+  max-width: 95vw;
+  max-height: 95vh;
+  border-radius: 6px;
+  animation: fadeIn .2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* disable scroll when fullscreen is open */
+body.noscroll {
+  overflow: hidden;
+}
+
+/* (Optional) cursor pointer for clickable images */
+.ilus-image{
+  cursor: pointer;
+}
+
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero-visual {
+    margin-top: 40px;
+  }
+
+  .blob-bg {
+    width: 90vw;
+  }
+
+  .hero-image {
+    width: 85vw;
+  }
+
+.split-section {
+    flex-direction: column; /* Stack vertically */
+  }
+
+    .left {
+        order: 1;
+        position: static;
+        width: 100%;        /* full width */
+        max-width: 100%;     /* ensure nothing restricts it */
+        padding: 0 1rem;     /* optional: nice mobile padding */
+    }
+
+    left h1{
+  top: 8em;
+  height: 100vh;
+  padding: 40px;
+  box-sizing: border-box;
+  width: 50%;
+    }
+
+    .right {
+        order: 2;
+        width: 100%;        /* images also align full width */
+    }
+
+    .right img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
 }

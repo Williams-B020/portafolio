@@ -19,16 +19,52 @@ body {
   color: #fff;
 }
 
-.words{
-    margin-top: 15vh; /* 10% of viewport height */
-    margin-bottom: 10vh;
+.hero-contacto{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.words h2{
-  color: white;
-  text-align: center;
-  font-size: 6rem;
-  padding: 0%;
+.words {
+  margin: 0 auto;
+  width: 90%;
+  display: flex;
+  white-space: nowrap;
+}
+
+.group{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 1em;
+}
+
+.text {
+  font-size: 8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1;
+  padding-right: 0.2em;
+}
+
+.hero-contacto:first-of-type {
+  padding-top: 120px;
+}
+
+.hero-contacto:nth-of-type(1) .text {
+  color: #dfb76e; /* red */
+}
+
+.hero-contacto:nth-of-type(2) .text {
+  color: #84a5f3; /* blue */
+}
+
+.hero-contacto:nth-of-type(3) .text {
+  color: #aafcc9; /* green */
 }
 
 .me{
