@@ -19,6 +19,50 @@ body {
   color: #fff;
 }
 
+/* LOADER BACKDROP */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+
+.orange{
+    background: #f17c57fa;
+}
+
+.center {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+}
+
+.circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 1px 1px #ff25251a;
+}
+
+.pulse {
+  animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0px rgba(21, 255, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(0, 102, 255, 0);
+  }
+}
+
 .navbar{
     position: fixed;
     top: 15px;
@@ -192,9 +236,10 @@ body.noscroll {
 }
 
 /* Position each humo image in a horizontal row */
-.humo:nth-child(2) { left: 55%; top: 0%; width: 500px; z-index: 9; }
-.humo:nth-child(3) { left: 70%; top: -5%; width: 300px; z-index: 5; }
-.humo:nth-child(4) { left: 10%; top: 0; width: 400px; z-index: 5; }
+.humo:nth-child(2) { left: 10%; top: 0%; width: 350px; z-index: 9;}
+.humo:nth-child(3) { left: 30%; top: -5%; width: 300px; z-index: 5;}
+.humo:nth-child(4) { left: 60%; top: 0%; width: 200px; z-index: 5;}
+.humo:nth-child(5) { right: 0%; top: 0%; width: 200px; z-index: 5;}
 
 .icon {
   position: absolute;
@@ -205,9 +250,9 @@ body.noscroll {
   z-index: 99;
 }
 
-.icon-web { width: 150px; }
-.icon-ilus { width: 150px; }
-.icon-cam { width: 150px; }
+.icon-web { width: 140px; }
+.icon-ilus { width: 140px; }
+.icon-cam { width: 140px; }
 
 
 /* ABOUT */
@@ -552,6 +597,9 @@ a {
   .humo:nth-child(2) { left: 5%; bottom: 0%; width: 500px; z-index: 9; }
   .humo:nth-child(3) { left: 10%; bottom: -10%; width: 300px; z-index: 5; }
   .humo:nth-child(4) { right: 0%; top: 10%; width: 400px; z-index: 5; }
+  .humo:nth-child(5) { right: 0%; top: 10%; width: 400px; z-index: 5; }
+  .humo:nth-child(6) { right: 0%; top: 10%; width: 400px; z-index: 5; }
+  
 
   .hero-text {
     font-size: clamp(2.5rem, 8vw, 5rem);

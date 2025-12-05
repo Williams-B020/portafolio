@@ -2,6 +2,5 @@
 width: min(80vw, 500px); /* responsive max width */
   height: auto; /* keeps aspect ratio */
   object-fit: contain; /* prevents distortion */
-
   z-index: 999;
   }

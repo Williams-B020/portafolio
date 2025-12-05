@@ -10,24 +10,22 @@
   
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="web.css">
-    <link rel="stylesheet" href="contacto.css">
+    <link rel="stylesheet" href="ilus.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
 
 </head>
-
 <body>
 
-        <div id="loader">
-           <div class="center">
-                <div class="circle pulse orange"></div>
-            </div>
+    <div id="loader">
+        <div class="center">
+            <div class="circle pulse orange"></div>
+        </div>
     </div>
 
-
-<!-- Navbar -->
+    <!-- Navbar -->
 <header class="navbar" id="navbar">
   <nav class="navbar-expand-lg">
     <div class="container-fluid">
@@ -50,86 +48,42 @@
 </header>
 
 <!-- -- -- -- -- HEADER  -- -- -- -- -->
- <section class="words-scroll">
+<section class="section-hero-web">
 
-<section class="hero-contacto">
-        <!-- Main text -->
-        <div class="words" data-duration="10">
+        <!-- Outline text -->
+        <div class="carousel outline-text" data-duration="12">
             <div class="group">
-                <div class="text" class="color=red" >CREATIVIDAD -</div>
+                <div class="text outline">MULTIMEDIA -</div>
             </div>
         </div>
-</section>
 
-<section class="hero-contacto">
         <!-- Main text -->
-        <div class="words" data-duration="15">
+        <div class="carousel" data-duration="12">
             <div class="group">
-                <div class="text">INTERACTIVIDAD -</div>
+                <div class="text">MULTIMEDIA -</div>
             </div>
         </div>
-</section>
-
-<section class="hero-contacto">
-        <!-- Main text -->
-        <div class="words" data-duration="6">
-            <div class="group">
-                <div class="text">DISEÑO -</div>
-            </div>
-        </div>
-</section>
 
 </section>
-
 
 <hr class="solid">
 
-    <section class="about-section" id="image-container">
-        <div class="text-about content">
-            <img class="me" src="imagenes/self.png" alt="">
-            <p class="scroll-about">Mis habilidades se enfocan en el diseño web,
-                ilustración, fotografía y animación para la creación de
-                interfaces web y graficas. Con la capacidad de tener una
-                comunicación para la resolución de problemas, y adaptándome a cualquier
-                circunstancia a los desafíos que sucedan en el desarrollo de proyectos
-            </p>
-        </div>
-    </section>
+<!-- -- -- -- -- SECTION DE SECCIONES MULTIMEDIA-- -- -- -- -->
 
+<section class="video-section">
+  <h1>My Video Title</h1>
+  <p>
+    This is a short description of the video. You can explain what it's about,
+    what the viewer will see, or any important context.
+  </p>
 
-    <div class="rubber-line">
-    <svg id="string-svg" width="100%" height="200">
-        <path id="string-path" stroke="white" stroke-width="1" fill="none"/>
-    </svg>
-</div>
-
-<section class="stack-section">
-  <div class="stack-container">
-    <div class="stack-title"><p>HABILIDADES</p> </div>
-
-    <div class="stack-items">
-      <span><p>Ilustrador</p></span>
-      <span><p>Photoshop</p></span>
-      <span><p>After Effects</p></span>
-      <span><p>Premiere Pro</p></span>
-      <span><p>HTML</p></span>
-      <span><p>CSS</p></span>
-
-      <span><p>WORDPRESS</p></span>
-      <span><p>FIGMA</p></span>
-      <span><p>JAVASCRIPT</p></span>
-
-
-
-    </div>
-  </div>
+  <video controls width="800">
+    <source src="imagenes/Imagenes-Multimedia/Video1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 </section>
 
-
-
-<div class="cursor"></div>
-
-<section class="spacio"></section>
+<hr class="solid">
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
@@ -138,6 +92,6 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
     <script src="main.js" defer></script>
-
+    
 </body>
 </html>

@@ -10,6 +10,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
   gsap.registerPlugin(ScrollTrigger, SplitText, MotionPathPlugin, ScrambleTextPlugin,);
 
+  
+
+  window.addEventListener("load", () => {
+
+    const circle = document.querySelector(".circle");
+
+    const tl = gsap.timeline({
+        defaults: { ease: "power3.inOut" }
+    });
+
+    // 1. Stop pulse smoothly (remove infinite animation)
+    tl.to(circle, {
+        duration: 0.2,
+        onStart: () => {
+            circle.style.animation = "none"; // stops pulse after loading
+        }
+    });
+
+    // 2. Expand circle to reveal page
+    tl.to(circle, {
+        width: 2000,
+        height: 2000,
+        duration: 1.3
+    });
+
+    // 3. Fade out loader
+    tl.to("#loader", {
+        opacity: 0,
+        duration: 0.6
+    }, "-=0.4")
+    .set("#loader", { display: "none" });
+});
+
+
+
+
+window.addEventListener("load", () => {
+  // run GSAP loader animation
+  gsap.to(".loader", { opacity: 1, duration: 1 });
+
+  setTimeout(() => {
+    gsap.to(".loader", { opacity: 0, duration: 0.5 });
+    document.getElementById("page").style.display = "block";
+  }, 3000);
+});
+
+
+
   // ===== NAVBAR =====
   const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
   const navbar = document.getElementById('navbar');
@@ -69,7 +117,7 @@ const desktopPaths = [
   [
     { x: 0, y: 0 },
     { x: 0, y: -150 },
-    { x: 350, y: -300 }
+    { x: 350, y: -250 }
   ],
   [
     { x: 0, y: 0 },
@@ -78,8 +126,8 @@ const desktopPaths = [
   ],
   [
     { x: 0, y: 0 },
-    { x: -40, y: -150 },
-    { x: -40, y: -150 }
+    { x: -40, y: -140 },
+    { x: -40, y: -140 }
   ]
 ];
 
@@ -291,7 +339,6 @@ document.querySelectorAll(".scramble-text").forEach((el) => {
         });
     });
 });
-
 
 
 const images = document.querySelectorAll('.web-image, .ilus-image, .foto-image');

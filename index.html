@@ -18,6 +18,12 @@
 
 <body>
 
+    <div id="loader">
+           <div class="center">
+                <div class="circle pulse orange"></div>
+            </div>
+    </div>
+    
 <!-- Navbar -->
 <header class="navbar" id="navbar">
   <nav class="navbar-expand-lg">
@@ -32,6 +38,7 @@
                 <li class="nav-web"><a class="nav-link" href="web.html">Diseño Web</a></li>
                 <li class="nav-ilustracion"><a class="nav-link" href="ilustracion.html">Ilustración</a></li>
                 <li class="nav-foto"><a class="nav-link" href="fotografia.html">Fotografía</a></li>
+                <li class="nav-cont"><a class="nav-link" href="multimedia.html">Multimedia</a></li>
                 <li class="nav-cont"><a class="nav-link" href="contacto.html">Contacto</a></li>
             </ul>
         </div>
@@ -48,13 +55,15 @@
              <div class="square-behind"></div>
             <img class="hero-img" src="imagenes/mano.png" alt="Centered Image">
             <img class="icon icon-web" src="imagenes/web.png" alt="">
-            <img class="icon icon-ilus" src="imagenes/icon_ilus.png" alt="">
-            <img class="icon icon-cam" src="imagenes/cam.png" alt="">
+            <img class="icon icon-ilus" src="imagenes/cam.png" alt="">
+            <img class="icon icon-cam" src="imagenes/ilust.png" alt="">
         </div>
         
-        <img class="humo from-top" src="imagenes/smoke.png">
-        <img class="humo from-top" src="imagenes/smoke3.png">
         <img class="humo from-top" src="imagenes/smoke1.png">
+        <img class="humo from-top" src="imagenes/smoke2.png">
+        <img class="humo from-top" src="imagenes/smoke3.png">
+        <img class="humo from-top" src="imagenes/smoke4.png">
+
         
     </section>
 
@@ -112,11 +121,13 @@
 <!-- -- -- -- -- SECTION DE SECCIONES ILUSTRACION-- -- -- -- -->
 <section>
     <div class="section-grid">
-        <div class="text-ilus-title">
-            <h1>Ilustración</h1>
+        <div class="text-ilus">
+            <p>En esta sección se recopilan proyectos fotográficos que exploran la composición, 
+               la luz y la narrativa visual, Cada imagen busca captar momentos únicos y transmitir
+               la esencia de su contexto</p>
         </div>
 
-        <div class="work-item">
+            <div class="work-item">
                 <img class="main-img" src="imagenes/ilus.png" alt="Work 1" loading="lazy">
                 <img class="hover-img" src="imagenes/ilus.png" alt="Work 1 Hover"loading="lazy">
                 <canvas class="noise-canvas"></canvas>
@@ -124,10 +135,9 @@
                 <button class="hover-button"><a href="ilustracion.html" class="scramble-text">Ilustración</a></button>
             </div>
         </div>
-        <div class="text-ilus">
-            <p>En esta sección se recopilan proyectos fotográficos que exploran la composición, 
-               la luz y la narrativa visual, Cada imagen busca captar momentos únicos y transmitir
-               la esencia de su contexto</p>
+
+        <div class="text-ilus-title">
+            <h1>Ilustración</h1>
         </div>
     </div>
 </section>
@@ -137,12 +147,11 @@
 <!-- -- -- -- -- SECTION DE SECCIONES PHOTO-- -- -- -- -->
 <section>
     <div class="section-grid">
-        <div class="text-photo">
-            <p>En esta sección se recopilan proyectos fotográficos 
-                que exploran la composición, la luz y la narrativa visual, 
-                Cada imagen busca captar momentos únicos y transmitir la esencia de su contexto</p>
+        <div class="text-photo-title">
+            <h1>Fotografía</h1>
         </div>
-        <div class="work-item">
+
+            <div class="work-item">
                 <img class="main-img" src="imagenes/cam.jpg" alt="Work 1" loading="lazy">
                 <img class="hover-img" src="imagenes/cam.jpg" alt="Work 1 Hover" loading="lazy">
                 <canvas class="noise-canvas"></canvas>
@@ -150,9 +159,13 @@
                 <button class="hover-button"><a href="fotografia.html" class="scramble-text">Fotografía</a></button>
             </div>
         </div>
-        <div class="text-photo-title">
-            <h1>Fotografía</h1>
+
+        <div class="text-photo">
+            <p>En esta sección se recopilan proyectos fotográficos 
+                que exploran la composición, la luz y la narrativa visual, 
+                Cada imagen busca captar momentos únicos y transmitir la esencia de su contexto</p>
         </div>
+
     </div>
 </section>
 
@@ -169,6 +182,7 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
     <script src="main.js" defer></script>
+
 
 </body>
 </html>
