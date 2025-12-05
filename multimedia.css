@@ -1,0 +1,16 @@
+  .video-section {
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .video-section h1 {
+    margin-bottom: 10px;
+  }
+
+  .video-section p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: white;
+  }

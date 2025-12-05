@@ -31,7 +31,6 @@ body {
   overflow: hidden;
 }
 
-
 .orange{
     background: #f17c57fa;
 }
@@ -56,10 +55,10 @@ body {
 
 @keyframes pulse-animation {
   0% {
-    box-shadow: 0 0 0 0px rgba(21, 255, 0, 0.2);
+    box-shadow: 0 0 0 0px rgba(2, 80, 247, 0.2);
   }
   100% {
-    box-shadow: 0 0 0 20px rgba(0, 102, 255, 0);
+    box-shadow: 0 0 0 40px rgba(0, 102, 255, 0);
   }
 }
 

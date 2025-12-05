@@ -68,10 +68,10 @@ body {
 }
 
 .me{
-    width: min(80vw, 500px); /* responsive max width */
+  width: min(80vw, 500px); /* responsive max width */
   height: auto; /* keeps aspect ratio */
   object-fit: contain; /* prevents distortion */
-  width: 50%;
+  width: 80%;
   z-index: 999;
 }
 
@@ -106,11 +106,38 @@ body {
     cursor: pointer;
 }
 
+
+
+/* styles.css */
 .stack-section {
+  position: relative;    /* imprescindible */
   width: 100%;
   padding: 40px 0;
   color: white;
+  overflow: hidden;
+  /* quitamos cualquier background-image directo aquí */
 }
+
+/* capa de fondo con opacidad */
+.stack-section::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  background-image: url("imagenes/icon.png");
+  background-size: cover;     /* o contain según necesites */
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.25;              /* controla la transparencia */
+  z-index: 0;
+  pointer-events: none;       /* para que no bloquee interacciones */
+}
+
+/* contenido por encima */
+.stack-section .stack-container {
+  position: relative;
+  z-index: 1;                 /* por encima del ::before */
+}
+
 
 .stack-container {
   display: flex;
@@ -125,8 +152,8 @@ body {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  opacity: 0.8;
   white-space: nowrap; /* keeps it in one line */
+  color: white;
 }
 
 .stack-items {
@@ -135,6 +162,7 @@ body {
   gap: 15px 100px;
   white-space: nowrap;
   text-decoration: underline;
+  color: white;
 }
 
 .stack-items span {
@@ -142,5 +170,50 @@ body {
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  opacity: 0.9;
+  color: white;
+}
+
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    gap: 40px;
+}
+
+.left-column,
+.right-column {
+    width: 30%; /* adjust if needed */
+}
+
+.image-column {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-column img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* optional */
+}
+
+
+
+
+
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+h2::after {
+    content: " ✦";
+    color: #4b4bff;
+    font-weight: bold;
 }
